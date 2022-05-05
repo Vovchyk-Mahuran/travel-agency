@@ -1,0 +1,113 @@
+.sajid-resort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    &__images {
+        display: flex;
+        gap: 25px;
+
+        img:not(.like) {
+            max-height: 282px;
+            box-shadow: 0px -26px 4px #DEEBEF;
+            border-radius: 20px;
+        }
+
+        .active-img {
+            margin-top: -70px;
+            position: relative;
+
+            .modal-window {
+                background-color: #fff;
+                width: 332px;
+                padding: 10px 23px;
+                position: absolute;
+                bottom: 60px;
+                z-index: 22;
+                box-shadow: 0px 4px 4px rgba(222, 235, 239, 0.25);
+                border-radius: 0px 20px 20px 20px;
+
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-bottom: 4px;
+                    border-bottom: 2px solid #D8E8FD;
+                    margin-bottom: 12px;
+                }
+                &__rating {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .booking-btn {
+                    color: #fff;
+                    padding: 10px;
+                    border: none;
+                    background: #FF9100;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+
+    &__text {
+        max-width: 396px;
+    }
+
+    &__title {
+        font-size: 41px;
+        line-height: 48px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+}
+@media (max-width:1024px){
+    .sajid-resort {
+        flex-direction: column-reverse;
+        &__text {
+            max-width: none;
+            margin-bottom: 100px;
+            font-size: 30px;
+            line-height: 35px;
+        }
+        &__title {
+            font-weight: 600;
+        }
+    }
+}
+@media (max-width:835px){
+    .sajid-resort{
+        &__text {
+            font-size: 25px;
+            line-height: 30px;
+        }
+        &__title {
+            font-size: 35px;
+            line-height: 35px;
+        }
+    }
+}
+@media (max-width:640px){
+  .sajid-resort__images {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .active-img {
+      margin-top: 0;
+      .modal-window {
+        display: none;
+      }
+    }
+  }
+}
+@media (max-width:450px) {
+    .sajid-resort {
+        &__text {
+            font-size: 21px;
+            line-height: 25px;
+        }
+    }
+}

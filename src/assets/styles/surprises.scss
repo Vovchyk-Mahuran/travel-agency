@@ -1,0 +1,120 @@
+.surprises {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 200px;
+
+    &__text {
+        font-size: 30px;
+        line-height: 35px;
+        max-width: 550px;
+    }
+
+    &__description {
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+
+    .list {
+        &__item {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        &__photo {
+            background-color: #d8e8fd;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .pool {
+            background-image: url(../img/pool.svg);
+        }
+
+        .beach {
+            background-image: url(../img/beach.svg);
+        }
+
+        .surprise {
+            background-image: url(../img/beach-surprise.svg);
+        }
+
+        .activities {
+            background-image: url(../img/beach-activities.svg);
+        }
+    }
+
+    &__videos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .main-video {
+            background-color: #a7a7a7;
+            background-image: url(../img/main-movie.png);
+            max-width: 482px;
+            max-height: 456px;
+            box-shadow: 1px 172px 52px rgba(214, 228, 232, 0.25),
+                -58px 160px 52px #D6E4E8;
+            border-radius: 20px;
+
+            img {
+                margin: 141px 154px;
+            }
+        }
+
+        .available-videos {
+            display: flex;
+            margin: 30px 0;
+            gap: 38px;
+        }
+
+         .video-tip {
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width:900px) {
+    .surprises {
+        flex-direction: column;
+
+        &__text {
+            max-width: none;
+        }
+    }
+}
+@media (max-width:835px){
+    .surprises {
+        margin-bottom: 125px;
+        &__text{
+            font-size: 25px;
+            line-height: 30px;
+        }
+        &__videos{
+            .main-video img{
+                margin: 100px 125px;
+            }
+        }
+    }   
+}
+@media (max-width:450px) {
+    .surprises {
+        &__text {
+            font-size: 21px;
+            line-height: 25px;
+        }
+
+        &__videos {
+            .main-video img {
+                margin: 60px 60px;
+            }
+        }
+    }
+}

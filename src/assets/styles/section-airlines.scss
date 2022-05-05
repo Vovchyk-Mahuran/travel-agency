@@ -1,0 +1,123 @@
+.section-airlines {
+    margin: 115px 0;
+    background-color: #E5F4F7;
+    padding: 48px 0;
+
+    .airlines {
+        background-color: #fff;
+        padding: 61px 0 53px 87px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        position: relative;
+
+        &__columns {
+            display: flex;
+            gap: 150px;
+            margin-top: 34px;
+            font-size: 25px;
+            line-height: 29px;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            margin-bottom: 28px;
+        }
+
+        &__photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #a7a7a7;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-shrink: 0;
+        }
+
+        .biman {
+            background-image: url(../img/biman.png);
+        }
+
+        .badal {
+            background-image: url(../img/badal.png);
+        }
+
+        .raza {
+            background-image: url(../img/raza.png);
+        }
+
+        .hello-int {
+            background-image: url(../img/hello-int.png);
+        }
+
+        .pakistan {
+            background-image: url(../img/pakistan.png);
+        }
+
+        .hello-international {
+            background-image: url(../img/hello-international.png);
+        }
+
+        &__tourist {
+            background-image: url(../img/tourist.svg);
+            width: 257px;
+            height: 551px;
+            position: absolute;
+            bottom: 0;
+            right: 47px;
+        }
+    }
+
+}
+@media (max-width:1024px){
+    .section-airlines{
+        .airlines{
+            &__columns{
+            gap: 100px;
+            }
+            &__tourist{
+                display: none;
+            }
+        }
+    }
+}
+@media(max-width:835px){
+    .section-airlines {
+        margin: 100px 0;
+    
+        .airlines {
+            &__columns {
+                font-size: 21px;
+                line-height: 23px;
+                gap: 25px;
+            }
+        }
+    }
+}
+@media (max-width:640px) {
+    .section-airlines {
+        .airlines {
+            &__columns {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    }
+}
+@media(max-width:450px) {
+    .section-airlines {
+        .airlines {
+            padding: 40px 10px;
+        }
+
+        &__columns {
+            font-size: 17px;
+            line-height: 20px;
+        }
+
+        &__item {
+            gap: 25px;
+        }
+    }
+}
