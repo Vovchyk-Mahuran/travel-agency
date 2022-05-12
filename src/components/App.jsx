@@ -22,11 +22,24 @@ import SectionAirlines from './SectionAirlines';
 import Form from './Form';
 import Footer from './Footer';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <div className='content'>
-        <Header/>
+        <Header user={props.user}
+          setUser={props.setUser}
+          users={props.users}
+          setUsers={props.setUsers}
+          nameChange={props.nameChange}
+          surnameChange={props.surnameChange}
+          emailChange={props.emailChange}
+          passwordChange={props.passwordChange}
+          onSuccess={props.onSuccess}
+          onError={props.onError}
+          onRegister={props.onRegister}
+          onLogin={props.onLogin}
+          isAuth={props.isAuth}
+          onLogOut={props.onLogOut}/>
         <Banner/>
         <Facilities />
         <Destination/>
