@@ -1,12 +1,14 @@
+import React from 'react';
+
 function Facility({
-    facilityClassName,
-    title
+  facilityClassName,
+  title,
 }) {
-    return (
-        <div className='cards__item'>
-            <a href='/' className={`cards__photo ${facilityClassName}`} ></a>
-            <a href='/' className='cards__title'>{title}</a>
-        </div>
-    )
+  return (
+    <a href="/" className="cards__item">
+      <div className={`cards__photo ${facilityClassName}`} />
+      <p className="cards__title">{title}</p>
+    </a>
+  );
 }
 export default Facility;

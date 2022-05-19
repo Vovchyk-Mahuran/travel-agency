@@ -1,112 +1,125 @@
+import { React, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
-import { usersData } from '../mock/users';
 import Form from 'react-bootstrap/Form';
-import { Alert } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { onRegister } from '../reducers/usersReducer';
 
-function Register({ nameChange, surnameChange, emailChange, passwordChange, onRegister, users, setUsers }) {
-    const [validated, setValidated] = useState(false);
+function Register() {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.user.users);
+  const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repassword, setRepassword] = useState('');
 
-    setValidated(true);
+  const newUser = {
+    id: users.length + 1,
+    name,
+    surname,
+    email,
+    password,
   };
-    // const [users, setUsers] = useState([]);
-    // const [name, setName] = useState('');
-    // const [surname, setSurname] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [isRegistered, setIsRegistered] = useState(false);
 
-    // useEffect(() => {
-    //     setUsers(usersData);
-    // },[])
-    // // const nameChange = (v) => {
-    //     const newName = v.target.value;
-    //     setName(newName);
-    //    // console.log(newName);
-    // }
-    // const surnameChange = (v) => {
-    //     const newSurname = v.target.value;
-    //     setSurname(newSurname);
-    //    // console.log(newSurname);
-    // }
-    // const emailChange = (v) => {
-    //     const newEmail = v.target.value;
-    //     setEmail(newEmail);
-    //    // console.log(newEmail);
-    // }
-    // const passwordChange = (v) => {
-    //     const newPassword = v.target.value;
-    //     setPassword(newPassword);
-    //     //console.log(newPassword);
-    // }
-    // const onRegister = () => {
-    //     const newUser = {
-    //         name,
-    //         surname,
-    //         email,
-    //         password,
-    //     }
-    //     if (users.find((user) => user.email === email)) {
-    //         alert("This email is registered");
-    //     } else {
-    //         alert('Account was successfully created')
-    //         const newUsers = users.push(newUser); 
-    //         setIsRegistered(true);
-    //         setUsers(newUsers);
-    //         console.log(newUsers);// виводить цифру???????
-    //     }
-        // console.log(newUser);
-        // const newUsers = [...users, newUser];
-        // console.log(newUsers)
-        // setUsers(newUsers);
-    //}
-    return (
-       <div className='m-5'>
-            <div className='text-center mb-3'>CREATE AN ACCOUNT</div>
-            {/* {!isRegistered && users.find((user) => email !== user.email) && <Alert variant='success'>success</Alert>} */}
-                 {/* : <Alert variant='danger'> wrong </Alert> */}
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Form.Group className="mb-3 d-flex flex-column " controlId="formBasicEmail">
-                    <Form.Label>Enter your name</Form.Label>
-                    <Form.Control type="text" placeholder="Ivan" required onChange={(e)=>nameChange(e)} />
-                </Form.Group>
-                <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
-                    <Form.Label>Enter your surname</Form.Label>
-                    <Form.Control type="text" placeholder='Ivanov' required onChange={(e)=>surnameChange(e)}/>
-                </Form.Group>
-                <Form.Group className="mb-3 d-flex flex-column " controlId="formBasicEmail">
-                    <Form.Label>Enter your email</Form.Label>
-                    <Form.Control type="email" placeholder="ivanov@gmail.com" required onChange={(e) => emailChange(e)} />
-                    <Form.Control.Feedback type="invalid">
-                        Enter valid email.
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
-                    <Form.Label>Enter your password</Form.Label>
-                    <Form.Control type="password" required minLength={4} maxLength={8} onChange={(e) => passwordChange(e)} />
-                    <Form.Control.Feedback type="invalid">
-                        Password must be from 4 to 8 symbols.
-                    </Form.Control.Feedback>
-                </Form.Group> 
-                <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
-                    <Form.Label>Confirm your password</Form.Label>
-                    <Form.Control required minLength={4} maxLength={8} type="password" />
-                    <Form.Control.Feedback type="invalid">
-                        Password must be from 4 to 8 symbols.
-                    </Form.Control.Feedback>
-                </Form.Group> 
-                <Button variant="primary" type='button'onClick={() => onRegister()}>
-                    Create
-                </Button>
-            </Form>
-        </div>
-    )
+  const onSubmit = () => dispatch(onRegister(newUser));
+
+  return (
+    <div className="m-5">
+      <div className="text-center mb-3">CREATE AN ACCOUNT</div>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group className="mb-3 d-flex flex-column " controlId="formBasicEmail">
+          <Form.Label>Enter your name</Form.Label>
+          <Form.Control
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('name', {
+              required: true,
+              minLength: {
+                value: 3,
+                message: 'Min length is 3 characters',
+              },
+            })}
+            type="text"
+            placeholder="Ivan"
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.name?.type === 'required' && 'name is required'}
+          {errors.name?.message}
+        </Form.Group>
+        <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
+          <Form.Label>Enter your surname</Form.Label>
+          <Form.Control
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('surname', {
+              required: true,
+              minLength: {
+                value: 4,
+                message: 'Min length is 4 characters',
+              },
+            })}
+            type="text"
+            placeholder="Ivanov"
+            onChange={(e) => setSurname(e.target.value)}
+          />
+          {errors.surname?.type === 'required' && 'surname is required'}
+          {errors.surname?.message}
+        </Form.Group>
+        <Form.Group className="mb-3 d-flex flex-column " controlId="formBasicEmail">
+          <Form.Label>Enter your email</Form.Label>
+          <Form.Control
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('email', {
+              required: true,
+              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+            })}
+            type="email"
+            placeholder="ivanov@gmail.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email?.type === 'required' && 'Enter valid email'}
+        </Form.Group>
+        <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
+          <Form.Label>Enter your password</Form.Label>
+          <Form.Control
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('password', {
+              required: true,
+              minLength: {
+                value: 4,
+                message: 'Min length is 4',
+              },
+            })}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password?.type === 'required' && 'password is required'}
+          {errors.password?.message}
+        </Form.Group>
+        <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicPassword">
+          <Form.Label>Confirm your password</Form.Label>
+          <Form.Control
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('repassword', {
+              required: true,
+              minLength: {
+                value: 4,
+                message: 'Min length is 4',
+              },
+            })}
+            type="password"
+            onChange={(e) => setRepassword(e.target.value)}
+          />
+          {errors.password?.type === 'required' && 'password is required'}
+          {errors.password?.message}
+          {password !== repassword && 'Passwords must be equal'}
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Create
+        </Button>
+      </Form>
+    </div>
+  );
 }
 export default Register;
