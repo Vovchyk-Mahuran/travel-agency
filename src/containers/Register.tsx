@@ -1,13 +1,15 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { onRegister } from '../reducers/usersReducer';
+import { User } from '../interfaces/UsersInterfaces/User';
+import { RootState } from '../store/store';
 
 function Register() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state: RootState) => state.user.users);
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   const [name, setName] = useState('');
@@ -16,7 +18,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
 
-  const newUser = {
+  const newUser: User = {
     id: users.length + 1,
     name,
     surname,
@@ -72,7 +74,7 @@ function Register() {
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('email', {
               required: true,
-              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+              // pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
             })}
             type="email"
             placeholder="ivanov@gmail.com"

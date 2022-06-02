@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { data } from '../mock/tours';
+import { TourReducer } from '../interfaces/ToursInterfaces/TourReducer';
 
-const initialState = {
-  tours: [],
+const initialState:TourReducer = {
+  tours:[],
 };
 
 export const tourSlice = createSlice({

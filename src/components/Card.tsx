@@ -1,11 +1,9 @@
 import React from 'react';
+import { CardType } from '../containers/Destination';
 
 function Card({
-  cardClassName,
-  price,
-  ID,
-  title,
-}) {
+  cardClassName, price, ID, title,
+}: CardType) {
   return (
     <div className="resort">
       <div className={`resort__img ${cardClassName}`} />

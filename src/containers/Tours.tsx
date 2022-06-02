@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -8,17 +8,19 @@ import Header from './Header';
 import '../assets/styles/Tours.scss';
 
 import { onAdd, onDeleteTour, sortByPrice } from '../reducers/tourReducer';
+import { Tour } from '../interfaces/ToursInterfaces/Tour'
+import { RootState } from '../store/store';
 
 function Tours() {
   const dispatch = useDispatch();
-  const tours = useSelector((state) => state.tour.tours);
-  const isAuth = useSelector((state) => state.user.isAuth);
+  const tours: Array<Tour> = useSelector((state: RootState) => state.tour.tours);
+  const isAuth : boolean = useSelector((state: RootState) => state.user.isAuth);
   const [id, setId] = useState('0');
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [photo, setPhoto] = useState('');
 
-  const newTour = {
+  const newTour: Tour = {
     id,
     name,
     price,
@@ -30,8 +32,8 @@ function Tours() {
       <div className="content">
         <Header />
         <div className="tours row justify-content-around">
-          {tours.map((tour) => (
-            <Card className="tours__tour tour">
+          {tours.map((tour: Tour) => (
+            <Card key='' className="tours__tour tour">
               <Card.Img className="tour__img" variant="top" src={tour.photo} style={{ width: `${100}%` }} />
               <Card.Body className="tour__body">
                 <Card.Title className="tour__title">{tour.name}</Card.Title>
@@ -59,11 +61,11 @@ function Tours() {
               </Form.Group>
               <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicCheckbox">
                 <Form.Label>Price</Form.Label>
-                <input type="number" label="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <input type="number" value={price} onChange={(e) => setPrice(+e.target.value)} />
               </Form.Group>
               <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicCheckbox">
                 <Form.Label>Img src</Form.Label>
-                <input type="text" label="Img" value={photo} onChange={(e) => setPhoto(e.target.value)} />
+                <input type="text" value={photo} onChange={(e) => setPhoto(e.target.value)} />
               </Form.Group>
               <Button
                 variant="primary"
@@ -76,7 +78,7 @@ function Tours() {
               <Button
                 variant="success"
                 onClick={() => {
-                  dispatch(sortByPrice(newTour));
+                  dispatch(sortByPrice());
                 }}
               >
                 Sort by price

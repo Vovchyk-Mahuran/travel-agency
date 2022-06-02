@@ -1,14 +1,23 @@
 import React from 'react';
-import Facility from './Facility';
-import PhotoCircle from './PhotoCircle';
+import Facility from '../components/Facility';
+import PhotoCircle from '../components/PhotoCircle';
 
 import time from '../assets/img/time.svg';
 import recommendationOne from '../assets/img/circle-1.png';
 import recommendationTwo from '../assets/img/circle-2.png';
 import recommendationThree from '../assets/img/circle-3.png';
 
+interface FacilityType {
+  facilityClassName: string,
+  title: string,
+}
+interface RecommendationsPhoto {
+  src: string,
+  title: string,
+}
+
 function Facilities() {
-  const facilitiesData = [
+  const facilitiesData: Array<FacilityType> = [
     {
       facilityClassName: 'swimming',
       title: 'Swimming',
@@ -26,7 +35,7 @@ function Facilities() {
       title: 'Dinner',
     },
   ];
-  const recommendPhotos = [
+  const recommendPhotos:Array<RecommendationsPhoto> = [
     {
       src: recommendationOne,
       title: 'ph',
@@ -50,6 +59,7 @@ function Facilities() {
         <div className="cards">
           {facilitiesData.map((facility) => (
             <Facility
+              key=''
               facilityClassName={facility.facilityClassName}
               title={facility.title}
             />
@@ -68,7 +78,7 @@ function Facilities() {
         <div className="recommendations">
           <input className="recommendations__search" type="text" placeholder="Search....." />
           <div className="recommendations__photos">
-            {recommendPhotos.map((photo) => <PhotoCircle src={photo.src} title={photo.title} />)}
+            {recommendPhotos.map((photo) => <PhotoCircle key='' src={photo.src} title={photo.title} />)}
           </div>
         </div>
       </div>

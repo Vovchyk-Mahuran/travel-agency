@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import './mixins.scss';
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -13,11 +15,12 @@
     }
 
     &__list {
+        @include flexCenter('row');
         list-style: none;
-        display: flex;
-        flex-direction: row;
+        // display: flex;
+        // flex-direction: row;
         justify-content: center;
-        align-items: center;
+        // align-items: center;
         gap: 50px;
         margin: 0;
     }

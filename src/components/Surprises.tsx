@@ -1,13 +1,17 @@
 import React from 'react';
-
 import PhotoCircle from './PhotoCircle';
 import play from '../assets/img/btn-play.svg';
 import videoOne from '../assets/img/video-1.png';
 import videoTwo from '../assets/img/video-2.png';
 import videoThree from '../assets/img/video-3.png';
 
+interface VideoType {
+  src: string,
+  title: string,
+}
+
 function Surprises() {
-  const videos = [
+  const videos:Array<VideoType> = [
     {
       src: videoOne,
       title: 'vid',
@@ -50,7 +54,7 @@ function Surprises() {
           <img src={play} alt="play" />
         </div>
         <div className="available-videos">
-          {videos.map((video) => <PhotoCircle src={video.src} title={video.title} />)}
+          {videos.map((video) => <PhotoCircle key='' src={video.src} title={video.title} />)}
         </div>
         <span className="video-tip">Play your favourite</span>
       </div>

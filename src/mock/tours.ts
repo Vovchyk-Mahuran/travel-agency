@@ -1,4 +1,6 @@
-export const data = [
+import { Tour } from '../interfaces/ToursInterfaces/Tour';
+
+export const data: Array<Tour> = [
   {
     id: '1',
     name: 'Hurgada',

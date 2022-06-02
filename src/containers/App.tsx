@@ -14,14 +14,14 @@ import '../assets/styles/menu.scss';
 
 import React from 'react';
 import Header from './Header';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 import Facilities from './Facilities';
 import Destination from './Destination';
-import Surprises from './Surprises';
-import SajidResort from './SajidResort';
-import SectionAirlines from './SectionAirlines';
-import Form from './Form';
-import Footer from './Footer';
+import Surprises from '../components/Surprises';
+import SajidResort from '../components/SajidResort';
+import SectionAirlines from '../components/SectionAirlines';
+import Form from '../components/Form';
+import Footer from '../components/Footer';
 
 function App() {
   return (

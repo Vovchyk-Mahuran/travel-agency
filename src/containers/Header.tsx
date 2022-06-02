@@ -1,14 +1,17 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Registration from './Registration';
 import { onLogOut } from '../reducers/usersReducer';
+import { User } from '../interfaces/UsersInterfaces/User';
+import { RootState } from '../store/store';
 
 function Header() {
+  const [menuActive, setMenuActive] = useState(false);
   const [modalShow, setModalShow] = useState(false);// регистрация
 
-  const isAuth = useSelector((state) => state.user.isAuth);
-  const user = useSelector((state) => state.user.user);
+  const isAuth: boolean = useSelector((state: RootState) => state.user.isAuth);
+  const user: User | undefined = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   return (
     <header className="header">
@@ -35,12 +38,12 @@ function Header() {
           )}
         </ul>
       </nav>
-      <div className="menu">
+      <button type="button" className="menu" onClick={() => setMenuActive(!menuActive)}>
         <span className="menu__span" />
         <span className="menu__span" />
         <span className="menu__span" />
-      </div>
-      <div className="menu-list list">
+      </button>
+      <div className={menuActive ? 'menu-list active list' : 'menu-list list'}>
         <nav>
           <ul>
             <li className="list__item"><Link to="/" className="list__link">Home</Link></li>

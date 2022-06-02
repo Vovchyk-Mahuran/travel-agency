@@ -1,9 +1,10 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { onLogin } from '../reducers/usersReducer';
+import { User } from '../interfaces/UsersInterfaces/User';
 
 function Login() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const user = {
+  const user:User = {
     email,
     password,
   };
@@ -29,7 +30,7 @@ function Login() {
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('email', {
               required: true,
-              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+              // pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
             })}
             type="email"
             placeholder="ivanov@gmail.com"

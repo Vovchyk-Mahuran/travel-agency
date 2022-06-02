@@ -1,12 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Header from './Header';
+import { RootState } from '../store/store';
+import { Tour } from '../interfaces/ToursInterfaces/Tour'
 
-function TourDetails({ tours }) {
+function TourDetails() {
   const location = useParams();
-  const selectedTour = tours.find((tour) => tour.id === location.id);
-  console.log(selectedTour);
-  console.log(tours);
+  const tours = useSelector((state: RootState) => state.tour.tours);
+  const selectedTour: Tour | undefined = tours.find((tour:Tour) => tour.id === location.id);
+
+  if (!selectedTour) return null;// for checking nalichie
+
   return (
     <div className="App">
       <div className="content">
@@ -22,7 +27,7 @@ function TourDetails({ tours }) {
               <input type="checkbox" checked={selectedTour.pets} />
             </div>
             <div>
-              {selectedTour?.exstras?.map((extra) => <div>{extra}</div>)}
+              {selectedTour?.exstras?.map((extra:string) => <div key=''>{extra}</div>)}
             </div>
           </div>
         </div>

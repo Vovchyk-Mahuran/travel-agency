@@ -1,4 +1,6 @@
-export const usersData = [
+import { User } from '../interfaces/UsersInterfaces/User';
+
+export const usersData: Array<User> = [
   {
     id: '1',
     name: 'Vova',

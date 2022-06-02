@@ -6,14 +6,19 @@ import Button from 'react-bootstrap/Button';
 import Login from './Login';
 import Register from './Register';
 
+interface RegistrationProps {
+  show: boolean,
+  onHide:()=>void,
+}
+
 function Registration({
   show, onHide,
-}) {
+}: RegistrationProps) {
   return (
     <Modal
       show={show}
       onHide={onHide}
-      size="m"
+      // size="m"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >

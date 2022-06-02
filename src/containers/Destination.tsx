@@ -1,9 +1,16 @@
 import React from 'react';
-import Card from './Card';
+import Card from '../components/Card';
 import arrowDown from '../assets/img/arrowDown.svg';
 
+export interface CardType {
+  cardClassName: string,
+  price: string,
+  ID: string,
+  title:string,
+}
+
 function Destination() {
-  const cardData = [
+  const cardData:Array<CardType> = [
     {
       cardClassName: 'resort__img-turkey-1',
       price: '$600.00',
@@ -36,6 +43,7 @@ function Destination() {
           } = card;// Деструктуризація
           return (
             <Card
+              key=''
               cardClassName={cardClassName}
               price={price}
               ID={ID}

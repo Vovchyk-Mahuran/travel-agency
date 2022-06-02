@@ -1,10 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { usersData } from '../mock/users';
+import { UsersReducer } from '../interfaces/UsersInterfaces/UsersReducer';
 
-const initialState = {
+
+const initialState: UsersReducer = {
   users: [],
   isAuth: false,
-  user: '',
+  user: {
+    id: '',
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+  },
 };
 
 export const usersSlice = createSlice({
