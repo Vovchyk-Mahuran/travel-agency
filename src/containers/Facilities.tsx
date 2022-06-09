@@ -6,15 +6,9 @@ import time from '../assets/img/time.svg';
 import recommendationOne from '../assets/img/circle-1.png';
 import recommendationTwo from '../assets/img/circle-2.png';
 import recommendationThree from '../assets/img/circle-3.png';
+import { FacilityType } from '../interfaces/TypesInterfaces/FacilityType';
+import { RecommendationsPhoto } from '../interfaces/TypesInterfaces/RecommendationsPhoto';
 
-interface FacilityType {
-  facilityClassName: string,
-  title: string,
-}
-interface RecommendationsPhoto {
-  src: string,
-  title: string,
-}
 
 function Facilities() {
   const facilitiesData: Array<FacilityType> = [
@@ -78,7 +72,7 @@ function Facilities() {
         <div className="recommendations">
           <input className="recommendations__search" type="text" placeholder="Search....." />
           <div className="recommendations__photos">
-            {recommendPhotos.map((photo) => <PhotoCircle key='' src={photo.src} title={photo.title} />)}
+            {recommendPhotos.map((photo) => <PhotoCircle className="recommendations__photo" key='' src={photo.src} title={photo.title} />)}
           </div>
         </div>
       </div>

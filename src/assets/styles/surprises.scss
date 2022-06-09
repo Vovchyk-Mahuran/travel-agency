@@ -73,6 +73,10 @@
             display: flex;
             margin: 30px 0;
             gap: 38px;
+            
+            &__photo{
+                border-radius: 50%;
+            }
         }
 
          .video-tip {

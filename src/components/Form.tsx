@@ -11,7 +11,7 @@ function Form() {
       </p>
       <div className="form__subscribe subscribe">
         <input className="email-input" type="email" placeholder="artalisajid@gmail.com" />
-        <Btn title="Try Free" bg="#273BF4" btnClassName="try-free" />
+        <Btn title="Try Free" btnClassName="try-free" />
       </div>
     </section>
   );

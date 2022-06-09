@@ -1,9 +1,6 @@
 import React from 'react';
+import { FacilityProps } from '../interfaces/PropsInterfaces/FacilityProps';
 
-interface FacilityProps {
-  facilityClassName: string,
-  title: string,
-}
 function Facility({
   facilityClassName,
   title,

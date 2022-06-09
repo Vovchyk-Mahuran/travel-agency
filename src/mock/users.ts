@@ -22,4 +22,11 @@ export const usersData: Array<User> = [
     email: 'maguran@ukr.net',
     password: '1234',
   },
+  {
+    id: '4',
+    name: 'Admin',
+    surname: 'Admin',
+    email: 'admin@gmail.com',
+    password: 'admin',
+  },
 ];

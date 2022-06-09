@@ -1,5 +1,6 @@
 import { Tour } from './Tour';
 
 export interface TourReducer {
-  tours:Array<Tour>
+  tours: Array<Tour>,
+  searchValues: any,
 }

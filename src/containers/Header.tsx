@@ -11,6 +11,7 @@ function Header() {
   const [modalShow, setModalShow] = useState(false);// регистрация
 
   const isAuth: boolean = useSelector((state: RootState) => state.user.isAuth);
+  const isAdmin: boolean = useSelector((state: RootState) => state.user.isAdmin);
   const user: User | undefined = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   return (
@@ -24,7 +25,7 @@ function Header() {
           <li className="list__item"><Link to="/contact" className="list__link">Contact</Link></li>
           {isAuth && user ? (
             <div>
-              {user.name}
+              {isAdmin ? <Link to='/admin'>{user.name}</Link>:user.name}
               <button type="button" className="m-3 header__login" onClick={() => dispatch(onLogOut())}>Log Out</button>
             </div>
           ) : (

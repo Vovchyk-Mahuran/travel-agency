@@ -9,13 +9,14 @@ import '../assets/styles/Tours.scss';
 import { onAdd, onDeleteTour, sortByPrice } from '../reducers/tourReducer';
 import { Tour } from '../interfaces/ToursInterfaces/Tour'
 import { RootState } from '../store/store';
-import Search from '../components/Search';
+// import Search from '../components/Search';
 import Loading from '../components/Loading';
 
-function Tours() {
+function AdminPage() {
   const dispatch = useDispatch();
   const tours: Array<Tour> = useSelector((state: RootState) => state.tour.tours);
-  const isAuth : boolean = useSelector((state: RootState) => state.user.isAuth);
+    const isAuth: boolean = useSelector((state: RootState) => state.user.isAuth);
+    const isAdmin: boolean = useSelector((state: RootState) => state.user.isAdmin);
   const [id, setId] = useState('0');
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
@@ -33,28 +34,26 @@ function Tours() {
   return (
     <div className="content">
       <div className="tours row justify-content-around">
-        <Search />
+          {/* <Search/> */}
             {tours.length ? tours.map((tour: Tour) => (
               <Card key='' className="tours__tour tour">
                 <Card.Img className="tour__img" variant="top" src={tour.photo} />
-                <Card.Body className="tour__body d-flex justify-content-between align-items-center">
-                  <div>
-                    <Card.Title className="tour__title">{tour.name}</Card.Title>
-                    <Card.Text className="tour__price">
-                      {tour.price}
-                      $
-                    </Card.Text>
-                  </div>
+                <Card.Body className="tour__body">
+                  <Card.Title className="tour__title">{tour.name}</Card.Title>
+                  <Card.Text className="tour__price">
+                    {tour.price}
+                    $
+                  </Card.Text>
                   <div className="tour__buttons">
-                    <Button className="tour__button" variant="variant"><Link to={`/tours/${tour.id}`}>OPEN DETAILS</Link></Button>
-                    {/* <Button variant="danger" onClick={() => dispatch(onDeleteTour(tour.id))}>DELETE</Button> */}
+                    <Button variant="variant"><Link to={`/tours/${tour.id}`}>OPEN DETAILS</Link></Button>
+                    <Button variant="success" className="tour__edit"><Link to={`/tours/${tour.id}/edit`}>EDIT</Link></Button>
+                    <Button variant="danger" onClick={() => dispatch(onDeleteTour(tour.id))}>DELETE</Button>
                   </div>
                 </Card.Body>
                 {tour.discount>0 && <span className="tour__discount">-{tour.discount}%</span>}
               </Card>
             )): <Loading/>}
             <div />
-            {isAuth && (
               <Form className="tours__form">
                 <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicEmail">
                   <Form.Label>ID</Form.Label>
@@ -80,10 +79,17 @@ function Tours() {
                 >
                   Add new tour
                 </Button>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    dispatch(sortByPrice());
+                  }}
+                >
+                  Sort by price
+                </Button>
               </Form>
-            )}
       </div>
     </div>
   );
 }
-export default Tours;
+export default AdminPage;

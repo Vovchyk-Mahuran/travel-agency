@@ -6,10 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Login from './Login';
 import Register from './Register';
 
-interface RegistrationProps {
-  show: boolean,
-  onHide:()=>void,
-}
+import { RegistrationProps } from '../interfaces/PropsInterfaces/RegistrationProps';
 
 function Registration({
   show, onHide,

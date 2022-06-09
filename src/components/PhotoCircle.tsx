@@ -1,12 +1,9 @@
 import React from 'react';
+import {PhotoCircleProps} from '../interfaces/PropsInterfaces/PhotoCircleProps';
 
-export interface PhotoCircleProps {
-  src: string,
-  title:string,
-}
-function PhotoCircle({ src, title }:PhotoCircleProps) {
+function PhotoCircle({ src, title, className }:PhotoCircleProps) {
   return (
-    <img style={{ borderRadius: '50%' }} src={src} alt={title} />
+    <img className={className} src={src} alt={title} />
   );
 }
 export default PhotoCircle;

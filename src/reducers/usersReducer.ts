@@ -6,6 +6,7 @@ import { UsersReducer } from '../interfaces/UsersInterfaces/UsersReducer';
 const initialState: UsersReducer = {
   users: [],
   isAuth: false,
+  isAdmin: false,
   user: {
     id: '',
     name: '',
@@ -35,9 +36,13 @@ export const usersSlice = createSlice({
         state.isAuth = true;
         // console.log('YES', state.isAuth, state.user);
       }
+      if (state.user?.email === 'admin@gmail.com' && state.user.password === 'admin') {
+        state.isAdmin = true;
+      }
     },
     onLogOut: (state) => {
       state.isAuth = false;
+      state.isAdmin = false;
     },
     fetchUsers: (state) => {
       state.users = usersData;

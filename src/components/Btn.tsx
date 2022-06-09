@@ -1,16 +1,12 @@
 import React from 'react';
+import { BtnProps } from '../interfaces/PropsInterfaces/BtnProps';
 
-interface BtnProps {
-  title: string,
-  btnClassName: string,
-  bg:string,
-}
 function Btn({
-  title, btnClassName, bg,
+  title, btnClassName, 
 }: BtnProps) {
   return (
     <div>
-      <button type="button" className={`${btnClassName}`} style={{ backgroundColor: bg }}>{title}</button>
+      <button type="button" className={btnClassName} >{title}</button>
     </div>
   );
 }

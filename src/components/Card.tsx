@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardType } from '../containers/Destination';
+import { CardType } from '../interfaces/TypesInterfaces/CardType';
 
 function Card({
   cardClassName, price, ID, title,

@@ -1,13 +1,8 @@
 import React from 'react';
 import Card from '../components/Card';
 import arrowDown from '../assets/img/arrowDown.svg';
+import { CardType } from '../interfaces/TypesInterfaces/CardType';
 
-export interface CardType {
-  cardClassName: string,
-  price: string,
-  ID: string,
-  title:string,
-}
 
 function Destination() {
   const cardData:Array<CardType> = [

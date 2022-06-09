@@ -6,4 +6,8 @@ export interface Tour {
   description?: string,
   pets?: boolean,
   exstras?: Array<string>,
+  from?: string,
+  to?: string,
+  discount?: number,
+  breakfast?:boolean,
 }

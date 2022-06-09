@@ -4,11 +4,8 @@ import play from '../assets/img/btn-play.svg';
 import videoOne from '../assets/img/video-1.png';
 import videoTwo from '../assets/img/video-2.png';
 import videoThree from '../assets/img/video-3.png';
+import { VideoType } from '../interfaces/TypesInterfaces/VideoType';
 
-interface VideoType {
-  src: string,
-  title: string,
-}
 
 function Surprises() {
   const videos:Array<VideoType> = [
@@ -54,7 +51,7 @@ function Surprises() {
           <img src={play} alt="play" />
         </div>
         <div className="available-videos">
-          {videos.map((video) => <PhotoCircle key='' src={video.src} title={video.title} />)}
+          {videos.map((video) => <PhotoCircle key='' className="available-videos__photo" src={video.src} title={video.title} />)}
         </div>
         <span className="video-tip">Play your favourite</span>
       </div>

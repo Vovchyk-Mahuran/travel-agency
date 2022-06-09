@@ -13,7 +13,6 @@ import '../assets/styles/footer.scss';
 import '../assets/styles/menu.scss';
 
 import React from 'react';
-import Header from './Header';
 import Banner from '../components/Banner';
 import Facilities from './Facilities';
 import Destination from './Destination';
@@ -25,9 +24,8 @@ import Footer from '../components/Footer';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <div className="content">
-        <Header />
         <Banner />
         <Facilities />
         <Destination />
