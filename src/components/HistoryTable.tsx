@@ -29,7 +29,7 @@ function DataTable({ data }) {
             tourName: record.name,
             adminName: record.adminName,
             time: moment(record?.createdAt.toLocaleString()).format('DD-MM-YY hh:mm'),
-            status: record.type === 1 ? 'Added' : 'Deleted'
+            status: record.type === 1 ? 'Added' : record.type === 2 ? 'Deleted' : 'Edited'
         })
     );
             

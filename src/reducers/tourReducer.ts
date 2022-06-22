@@ -36,8 +36,9 @@ export const AddTour: any = createAsyncThunk(
 
 export const TourEdit: any = createAsyncThunk(
   'tour/edit',
-  async (tour) => {
+  async (tour:Tour) => {
     const { data } = await TourAPI.editTour(tour);
+    await HistoryAPI.record({ ...tour, type: 3 });
     return data;
   }
 ) 
@@ -81,10 +82,6 @@ export const tourSlice = createSlice({
     },
     filterTours: (state) => {
       let temp = [...state.tours];
-
-      if (state.searchValues) {
-        temp = [...state.tours]
-      }
 
       if (state.searchValues.name) {     
         temp = temp.filter((tour:Tour)=>tour.name.toLowerCase().includes(state.searchValues.name.toLowerCase()));
