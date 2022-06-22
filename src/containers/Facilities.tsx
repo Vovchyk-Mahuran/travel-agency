@@ -13,32 +13,39 @@ import { RecommendationsPhoto } from '../interfaces/TypesInterfaces/Recommendati
 function Facilities() {
   const facilitiesData: Array<FacilityType> = [
     {
+      id:1,
       facilityClassName: 'swimming',
       title: 'Swimming',
     },
     {
+      id:2,
       facilityClassName: 'wifi',
       title: 'Wi-fi',
     },
     {
+      id:3,
       facilityClassName: 'ac',
       title: 'AC',
     },
     {
+      id:4,
       facilityClassName: 'dinner',
       title: 'Dinner',
     },
   ];
   const recommendPhotos:Array<RecommendationsPhoto> = [
     {
+      id:1,
       src: recommendationOne,
       title: 'ph',
     },
     {
+      id: 2,
       src: recommendationTwo,
       title: 'ph',
     },
     {
+      id:3,
       src: recommendationThree,
       title: 'ph',
     },
@@ -53,7 +60,7 @@ function Facilities() {
         <div className="cards">
           {facilitiesData.map((facility) => (
             <Facility
-              key=''
+              key={facility.id}
               facilityClassName={facility.facilityClassName}
               title={facility.title}
             />
@@ -72,7 +79,7 @@ function Facilities() {
         <div className="recommendations">
           <input className="recommendations__search" type="text" placeholder="Search....." />
           <div className="recommendations__photos">
-            {recommendPhotos.map((photo) => <PhotoCircle className="recommendations__photo" key='' src={photo.src} title={photo.title} />)}
+            {recommendPhotos.map((photo) => <PhotoCircle className="recommendations__photo" key={photo.id} src={photo.src} title={photo.title} />)}
           </div>
         </div>
       </div>

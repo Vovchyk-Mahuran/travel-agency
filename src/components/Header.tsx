@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Registration from './Registration';
+import Registration from '../containers/Registration';
 import { onLogOut } from '../reducers/usersReducer';
 import { User } from '../interfaces/UsersInterfaces/User';
 import { RootState } from '../store/store';
@@ -11,7 +11,7 @@ function Header() {
   const [modalShow, setModalShow] = useState(false);// регистрация
 
   const isAuth: boolean = useSelector((state: RootState) => state.user.isAuth);
-  const isAdmin: boolean = useSelector((state: RootState) => state.user.isAdmin);
+  const isAdmin: boolean | undefined = useSelector((state: RootState) => state.user.user?.isAdmin);
   const user: User | undefined = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   return (
@@ -21,7 +21,7 @@ function Header() {
         <ul className="header__list list">
           <li className="list__item"><Link to="/" className="list__link">Home</Link></li>
           <li className="list__item"><Link to="/tours" className="list__link">Tours</Link></li>
-          <li className="list__item"><Link to="/type" className="list__link">Type of house</Link></li>
+          <li className="list__item"><Link to="/history" className="list__link">History</Link></li>
           <li className="list__item"><Link to="/contact" className="list__link">Contact</Link></li>
           {isAuth && user ? (
             <div>

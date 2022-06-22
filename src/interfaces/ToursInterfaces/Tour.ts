@@ -1,5 +1,5 @@
 export interface Tour {
-  id: string,
+  id?: string,
   name: string,
   photo: string,
   price: number,
@@ -8,6 +8,7 @@ export interface Tour {
   exstras?: Array<string>,
   from?: string,
   to?: string,
-  discount?: number,
-  breakfast?:boolean,
+  discount?: number | any,
+  breakfast?: boolean,
+  owner?: string
 }

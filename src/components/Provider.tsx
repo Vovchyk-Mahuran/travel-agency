@@ -5,29 +5,30 @@ import App from '../containers/App';
 import Tours from '../containers/Tours';
 import TourDetails from '../containers/TourDetails';
 
-import { fetchTours } from '../reducers/tourReducer';
-import { fetchUsers } from '../reducers/usersReducer';
+import { FetchCountries, fetchTours, GetAllTours } from '../reducers/tourReducer';
+import { fetchUsers, GetAllUsers } from '../reducers/usersReducer';
 
-import Header from '../containers/Header';
+import Header from './Header';
 import '../assets/styles/App.scss';
 import '../assets/styles/header.scss';
 import AdminPage from '../containers/AdminPage';
 import { RootState } from '../store/store';
 import EditTour from './EditTour';
 
+import { GetAllHistory } from '../reducers/historyReducer';
+import HistoryPage from '../containers/HistoryPage';
+
 
 function Provider2() {
-  // const tours = useSelector((state) => state.tour.tours);
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.user);
-  const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
+  const isAdmin = useSelector((state: RootState) => state.user.user?.isAdmin);
+  const isAuth = useSelector((state: RootState) => state.user.isAuth);
 
   useEffect(() => {
-    setTimeout(() => {
-      // first loading of website to API
-      dispatch(fetchTours());// setTours(data);
-    }, 1000)
-    dispatch(fetchUsers());
+    // first loading of website to API
+    dispatch(GetAllTours());// setTours(data);
+    dispatch(GetAllUsers());
+    dispatch(FetchCountries());
   }, []);
 
   return (
@@ -60,16 +61,17 @@ function Provider2() {
           <Route
             // index
             path="/tours/:id/edit"
-            element={isAdmin ? <EditTour/> : <Navigate to='/' />}
+            element={isAuth && isAdmin ? <EditTour/> : <Navigate to='/' />}
           />
           <Route
             path="/admin"
-            element={isAdmin ? <AdminPage />: <Navigate to='/' />}
+            element={isAuth && isAdmin ? <AdminPage />: <Navigate to='/' />}
           />
           <Route
-            // index
-            path="/type"
-            element={<div>2</div>}
+            path="/history"
+            element={(
+              <HistoryPage/>
+            )}
           />
           <Route
             // index

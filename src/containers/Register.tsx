@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
-import { onRegister } from '../reducers/usersReducer';
+import { onRegister, RegisterUser } from '../reducers/usersReducer';
 import { User } from '../interfaces/UsersInterfaces/User';
 import { RootState } from '../store/store';
 
@@ -26,7 +26,7 @@ function Register() {
     password,
   };
 
-  const onSubmit = () => dispatch(onRegister(newUser));
+  const onSubmit = () => dispatch(RegisterUser(newUser));
 
   return (
     <div className="m-5">
